@@ -77,12 +77,12 @@ def define_sentiment(article, sid = SentimentIntensityAnalyzer()):
 # articles['sentiment'] = articles['raw_article'].apply(define_sentiment) 40 min
 articles['sentiment'] = articles['raw_article'].apply(define_sentiment)
 
-# articles panda to csv
 articles.to_csv('articles_panda.csv', sep=';')
 
 ## SENTIMENT TO CSV 
 # Matrix
-sentiment_matrix = numpy.zeros(shape=(articles['sentiment'].shape[0],6))
+date1 = articles['date'].dt.strftime('%Y-%m-%d')
+sentiment_matrix = np.zeros(shape=(articles['sentiment'].shape[0],6))
 
 for i in range(0,sentiment_matrix.shape[0]):
         results.append(articles['sentiment'])
@@ -92,7 +92,7 @@ for i in range(0,sentiment_matrix.shape[0]):
         sentiment_matrix[i,5]=articles['sentiment'][articles.sentiment.keys()[i]]["compound"]
         sentiment_matrix[i,0]=articles.sentiment.keys()[i]
         sentiment_matrix[i,1]=articles['timestamp'][articles.sentiment.keys()[i]]
-        #print >> f, article["article"] + "\n\t" + str(vs)  # or f.write('...\n')
 
-# sentiment_matrix to csv
-np.savetxt('sentiment_matrix_final.csv', sentiment_matrix, fmt='%.4f', delimiter=';',newline='\n', footer='', comments='# ', header='News Sentiment')
+names = ['Index','Timestamp','neg','neu','pos','compound']
+df = pd.DataFrame(sentiment_matrix, columns=names)
+df.to_csv('df.csv', index=True, header=True, sep=';')
