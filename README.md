@@ -31,7 +31,7 @@ Analysis results are accessible by typing:
 - *analysis2015[[k]]* : 2015/01/03 - 2015/06/03 window.
 
 *k* defines performed analysis type and it can take the following values:
-- *1* : Outstanding the sentiment threshold.
+- *1* : Compound sentiment values outstanding the sentiment threshold.
 - *2* : Compound sentiment R summary.
 - *3* : Compound sentiment variance.
 - *4* : Compound sentiment skewness.
