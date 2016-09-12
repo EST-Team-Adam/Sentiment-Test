@@ -9,7 +9,7 @@ Data used are International Grains Council daily Wheat series and the sentiment 
 - **1.0** : Unlabeled sentiment and 2010-2015 prices comparison. Whole analysis is available in "readme.pdf" file.
 
 #### _1.0_
-R script relies on "*dplyr*", "*fANCOVA*" and "*moments*" packages and it's composed by three parts: **main.r**, **df_date.r**, **dataframe_manipulator.r** and **analysis.r**.
+R script relies on "*dplyr*", "*fANCOVA*" and "*moments*" packages and it's composed by four parts: **main.r**, **df_date.r**, **dataframe_manipulator.r** and **analysis.r**.
 
 Script "**main.r**" is the main script where R loads the original wheat price series ("wheat_index_igc.csv") and the unlabeled sentiment matrix ("df.csv" from main.py). 
 Once data are loaded, 5 analyses are run: the first one is relative to the whole 2010-2015 time interval, then 2010, 2011, 2012 and 2015 windows are separately analized.
