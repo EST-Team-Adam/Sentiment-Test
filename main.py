@@ -85,7 +85,6 @@ date1 = articles['date'].dt.strftime('%Y-%m-%d')
 sentiment_matrix = np.zeros(shape=(articles['sentiment'].shape[0],6))
 
 for i in range(0,sentiment_matrix.shape[0]):
-        results.append(articles['sentiment'])
         sentiment_matrix[i,2]=articles['sentiment'][articles.sentiment.keys()[i]]["neg"]
         sentiment_matrix[i,3]=articles['sentiment'][articles.sentiment.keys()[i]]["neu"]
         sentiment_matrix[i,4]=articles['sentiment'][articles.sentiment.keys()[i]]["pos"]
