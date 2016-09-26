@@ -31,6 +31,8 @@ regex = re.compile('[%s]' % re.escape(string.punctuation))
 
 import csv
 
+import collections
+
 ## DATA LOADING ##
 
 #version = ""
@@ -77,9 +79,36 @@ def define_sentiment(article, sid = SentimentIntensityAnalyzer()):
 # articles['sentiment'] = articles['raw_article'].apply(define_sentiment) 40 min
 articles['sentiment'] = articles['raw_article'].apply(define_sentiment)
 
-articles.to_csv('articles_panda.csv', sep=';')
+#articles.to_csv('articles_panda.csv', sep=';')
 
 ## SENTIMENT TO CSV 
+
+# Labeling #
+labels_matrix = np.zeros(shape=(articles['article'].shape[0],5))
+
+for i in range(0,labels_matrix.shape[0]):
+        c = collections.Counter(articles['article'][i])
+        labels_matrix[i,0] = c['wheat']
+        labels_matrix[i,1] = c['maize']
+        labels_matrix[i,2] = c['soybeans']
+        labels_matrix[i,3] = c['rice']
+        if np.sum(labels_matrix[i,0:3]) != 0:
+            if labels_matrix[i,0] > np.sum(labels_matrix[i,1:3]):
+               labels_matrix[i,4] = 0
+            elif labels_matrix[i,1] > labels_matrix[i,0]+labels_matrix[i,2]+labels_matrix[i,3]:
+                      labels_matrix[i,4] = 1
+            elif labels_matrix[i,2] > labels_matrix[i,0]+labels_matrix[i,1]+labels_matrix[i,3]:
+                      labels_matrix[i,4] = 2
+            elif labels_matrix[i,3] > np.sum(labels_matrix[i,0:2]):
+                      labels_matrix[i,4] = 3
+            else:
+                labels_matrix[i,4] = 4
+        else:
+                labels_matrix[i,4] = 5
+
+names = ['wheat','maize','soybeans','rice','class']
+df_labels = pd.DataFrame(labels_matrix, columns=names)
+
 # Matrix
 date1 = articles['date'].dt.strftime('%Y-%m-%d')
 sentiment_matrix = np.zeros(shape=(articles['sentiment'].shape[0],6))
@@ -92,6 +121,26 @@ for i in range(0,sentiment_matrix.shape[0]):
         sentiment_matrix[i,0]=articles.sentiment.keys()[i]
         sentiment_matrix[i,1]=articles['timestamp'][articles.sentiment.keys()[i]]
 
-names = ['Index','Timestamp','neg','neu','pos','compound']
-df = pd.DataFrame(sentiment_matrix, columns=names)
+df=np.concatenate((sentiment_matrix,df_labels),1)
+
+names = ['Index','Timestamp','neg','neu','pos','compound','wheat','maize','soybeans','rice','label']
+df = pd.DataFrame(df, columns=names)
 df.to_csv('df.csv', index=True, header=True, sep=';')
+
+## WIP ##
+
+#for i in range(0,df_labels.shape[0]):
+#        if df_labels['class'][i] == 0:
+#           df_labels['class'][i] = "wheat"
+#        elif df_labels['class'][i] == 1:
+#             df_labels['class'][i]="maize"
+#        elif df_labels['class'][i]== 2:
+#             df_labels['class'][i]="soybeans"
+#        elif df_labels['class'][i] == 3:
+#             df_labels['class'][i]="rice"
+#        elif df_labels['class'][i] == 4:
+#             df_labels['class'][i]="mixed"
+#        else:
+#             df_labels['class'][i]="general"
+
+df_labels.to_csv('df_labels.csv', index=True, header=True, sep=';')
