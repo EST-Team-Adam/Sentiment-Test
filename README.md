@@ -8,6 +8,7 @@ Data used are International Grains Council daily Wheat series and the sentiment 
 ## Version History
 - **1.0** : Unlabeled sentiment and 2010-2015 prices comparison. Whole analysis is available in "readme.pdf" file.
 - **1.1** : Basic Commodity Labels.
+- **1.2** : Basic labelled commodities EDA.
 
 #### _1.0_
 R script relies on "*dplyr*", "*fANCOVA*" and "*moments*" packages and it's composed by four parts: **main.r**, **df_date.r**, **dataframe_manipulator.r** and **analysis.r**.
@@ -58,3 +59,7 @@ In *"df.csv"* column "label" possible values are:
 By analysing the results it appears that more than half of the articles are labeled as "general", therefore it has to be widened the set of words used. For example this method isn't robust to capital letters and synonims have to be added in the set.
 
 On the other hand it appears that a vast majority of non-general articles are labeled as "wheat". Moreover in "wheat" labeled  articles it's common that the "wheat" counter shows a significantly high number  of observations. It seems that wheat is the more covered commodity amongst rice, wheat, maize and soybeans.
+
+#### _1.2_
+
+WIP
