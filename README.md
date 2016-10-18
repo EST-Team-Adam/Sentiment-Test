@@ -67,4 +67,4 @@ WIP
 
 #### _1.3_
 
-De-noised sentiment through Kalman filter (WIP)
+De-noised sentiment through Kalman filter (Probably it's better to use de-noised sentiment rather than raw sentiment in studying correlation with price, WIP)
