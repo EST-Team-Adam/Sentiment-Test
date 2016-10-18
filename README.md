@@ -8,7 +8,8 @@ Data used are International Grains Council daily Wheat series and the sentiment 
 ## Version History
 - **1.0** : Unlabeled sentiment and 2010-2015 prices comparison. Whole analysis is available in "readme.pdf" file.
 - **1.1** : Basic Commodity Labels.
-- **1.2** : Basic labelled commodities EDA.
+- **1.2** : Basic labelled commodities EDA. (WIP)
+- **1.3** : Filtered Sentiment. (WIP)
 
 #### _1.0_
 R script relies on "*dplyr*", "*fANCOVA*" and "*moments*" packages and it's composed by four parts: **main.r**, **df_date.r**, **dataframe_manipulator.r** and **analysis.r**.
@@ -63,3 +64,7 @@ On the other hand it appears that a vast majority of non-general articles are la
 #### _1.2_
 
 WIP
+
+#### _1.3_
+
+De-noised sentiment through Kalman filter (WIP)
