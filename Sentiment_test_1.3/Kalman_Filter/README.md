@@ -5,6 +5,8 @@ a qualitative interpretation to the Gaussian error assumption in a sentiment con
 
 Kalman Filter has been chosen for this test because it has been widened used in previous research papers regarding sentiment.
 
+An extensive research on the topic can be found in the file file *Kalman_Filter_Sentiment.pdf* .
+
 ###R scripts###
 
 The research uses two scripts, which rely on _FKF_ R package:
