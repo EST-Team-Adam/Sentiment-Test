@@ -1,4 +1,4 @@
-##Kalman Filter##
+##Kalman Filter usability in a Sentiment context##
 
 The aim of the research is to to test Kalman Filter efficiency in sentiment noise removal, giving a quantitative resume of the algorithm and 
 a qualitative interpretation to the Gaussian error assumption in a sentiment context.
