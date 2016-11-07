@@ -32,6 +32,4 @@ filtered_sentiment <- list(fkf.obj,y)
 
 return(filtered_sentiment)
 
-#cor(ts(fkf.obj$att[1, ], start = start(y), frequency = frequency(y)),df$wheat_index_igc)
-
 }
