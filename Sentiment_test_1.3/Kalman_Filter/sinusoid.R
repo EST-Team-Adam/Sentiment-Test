@@ -17,8 +17,7 @@ set.seed(1)
 y <- a*sin(b*t)+c.norm*amp # Gaussian/normal error
 
 # plot results
-plot(t, y, t="l", ylim=range(y2)*c(1,1.2))
-legend("top", legend=c("y"), col=1:2, lty=1, ncol=2, bty="n")
+plot(t, y, t="l", ylim=range(y)*c(1,1.2))
 
 y <- y
 filtered_sentiment <- kalman_filter(y)
